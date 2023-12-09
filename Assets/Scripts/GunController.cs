@@ -16,8 +16,15 @@ public class GunController : MonoBehaviour
     [SerializeField] private float gunRate = 5f;
     [SerializeField] private float bulletDesteoyTime = 0.7f;
 
+    AudioPlayer audioPlayer;
+
     private bool isShooting = false;
     private float bulletAcceleration = 10f;
+
+    private void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+    }
 
     private void Update()
     {
@@ -37,6 +44,7 @@ public class GunController : MonoBehaviour
         if (!isShooting && Touchscreen.current.press.isPressed && !CanvaControle.isPaused)
         {
             muzzleFlash.Play();
+            audioPlayer.PlayShootingClip();
             GameObject projectailObj = Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             Rigidbody projectailRB = projectailObj.GetComponent<Rigidbody>();
             projectailRB.AddForce(projectailRB.transform.forward * bulletSpeed * bulletAcceleration);

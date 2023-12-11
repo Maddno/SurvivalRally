@@ -5,12 +5,16 @@ public class HealthHolder : MonoBehaviour
     [SerializeField] private float health = 50f;
     [SerializeField] private ParticleSystem deathEffect;
     [SerializeField] private bool isPlayer;
+    [SerializeField] private Collider objectColider;
 
     CanvaControle canvaControle;
+    AudioPlayer audioPlayer;
+    
 
     private void Awake()
     {
         canvaControle = FindObjectOfType<CanvaControle>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     public void GetDamage(float damage)
@@ -29,16 +33,28 @@ public class HealthHolder : MonoBehaviour
 
     private void Death()
     {
-        if(!isPlayer)
+        
+        if (!isPlayer)
         {
-            deathEffect.Play();
-            Destroy(gameObject, 0.2f);
+            audioPlayer.PlayZombieDeathClip();
+            PlayDeathParticle();
+            Destroy(gameObject);
         }
         else
         {
-            deathEffect.Play();
-            Destroy(gameObject, 0.5f);
+            audioPlayer.PlayExplosionClip();
+            PlayDeathParticle();
+            Destroy(gameObject, 1f);
             canvaControle.GameOver();
         }
+
+        objectColider.gameObject.SetActive(false);
+    }
+
+    private void PlayDeathParticle()
+    {
+        ParticleSystem deathEffectInstance = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        deathEffectInstance.Play();
+        Destroy(deathEffectInstance.gameObject, deathEffectInstance.main.duration + deathEffectInstance.main.startLifetime.constantMax);
     }
 }

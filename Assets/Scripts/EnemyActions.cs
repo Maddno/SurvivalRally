@@ -9,27 +9,46 @@ public class EnemyActions : MonoBehaviour
     [SerializeField] private float enemySpeed = 1f;
     [SerializeField] private float enemyDamage = 10f;
 
+    AudioPlayer audioPlayer;
+
     private bool playerInSightRange;
+    private bool playAwakeZombiSound;
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         enemyAnimator = GetComponent<Animator>();
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        playerInSightRange = false;
     }
 
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 
-        if (!playerInSightRange) OnIdle();
-        if (playerInSightRange) OnChasePlayer();
+        if (!playerInSightRange)
+        {
+            OnIdle();
+            playAwakeZombiSound = false;
+        }
+
+        if (playerInSightRange)
+        {
+            OnChasePlayer();
+            if(!playAwakeZombiSound) 
+            {
+                audioPlayer.PlayZombieAwakeClip();
+                playAwakeZombiSound = true;
+            }
+        }
     }
 
     private void OnIdle()
     {
         enemyAnimator.SetBool("isMove", false);
         enemyAnimator.SetBool("isAtack", false);
-
     }
 
     private void OnChasePlayer()
@@ -46,5 +65,4 @@ public class EnemyActions : MonoBehaviour
             collision.gameObject.GetComponent<HealthHolder>().GetDamage(enemyDamage);
         }
     }
-
 }

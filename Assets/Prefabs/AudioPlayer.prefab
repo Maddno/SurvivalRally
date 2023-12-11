@@ -46,11 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingClip: {fileID: 8300000, guid: 3cf16698ebe23224ca8389990ecaa5bf, type: 3}
-  shootingVolume: 0.575
-  damageClip: {fileID: 0}
-  damageVolume: 1
-  destroyedClip: {fileID: 0}
-  destroyedVolume: 1
+  shootingVolume: 0.4
+  awakeClip: {fileID: 8300000, guid: 2e97ce146a23814499473aeecf389c07, type: 3}
+  awakeVolume: 1
+  deathClip: {fileID: 8300000, guid: 0d94d045ccfac63429e6b6d661c41b1f, type: 3}
+  deathVolume: 1
+  explosionClip: {fileID: 8300000, guid: 8824f0db59e49d948ad568c7d776e337, type: 3}
+  explosionVolume: 1
 --- !u!82 &2152389461393000695
 AudioSource:
   m_ObjectHideFlags: 0
@@ -65,11 +67,11 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 50
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

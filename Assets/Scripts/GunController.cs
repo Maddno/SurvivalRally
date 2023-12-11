@@ -58,7 +58,6 @@ public class GunController : MonoBehaviour
     {
         isShooting = false;
     }
-
     
     private void OnCollisionEnter(Collision collision)
     {

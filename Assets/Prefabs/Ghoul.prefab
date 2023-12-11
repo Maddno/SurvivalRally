@@ -1070,8 +1070,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe684c443316b546a3645678760c087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
+  health: 50
   deathEffect: {fileID: 8713170028227544524}
+  isPlayer: 0
+  objectColider: {fileID: -8973761034765834840}
 --- !u!1 &1312574273513674
 GameObject:
   m_ObjectHideFlags: 0

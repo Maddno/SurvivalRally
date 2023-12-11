@@ -2,17 +2,21 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-    [Header("Shooting")]
+    [Header("GunShooting")]
     [SerializeField] AudioClip shootingClip;
     [SerializeField][Range(0f, 1f)] float shootingVolume = 1f;
 
-    [Header("Damage")]
-    [SerializeField] AudioClip damageClip;
-    [SerializeField][Range(0f, 1f)] float damageVolume = 1f;
+    [Header("ZombieAwake")]
+    [SerializeField] AudioClip awakeClip;
+    [SerializeField][Range(0f, 1f)] float awakeVolume = 1f;
 
-    [Header("Destroyed")]
-    [SerializeField] AudioClip destroyedClip;
-    [SerializeField][Range(0f, 1f)] float destroyedVolume = 1f;
+    [Header("ZombieDeath")]
+    [SerializeField] AudioClip deathClip;
+    [SerializeField][Range(0f, 1f)] float deathVolume = 1f;
+
+    [Header("CarExplosion")]
+    [SerializeField] AudioClip explosionClip;
+    [SerializeField][Range(0f, 1f)] float explosionVolume = 1f;
 
     static AudioPlayer instance;
 
@@ -40,14 +44,19 @@ public class AudioPlayer : MonoBehaviour
         PlayClip(shootingClip, shootingVolume);
     }
 
-    public void PlayDamageClip()
+    public void PlayZombieAwakeClip()
     {
-        PlayClip(damageClip, damageVolume);
+        PlayClip(awakeClip, awakeVolume);
     }
 
-    public void PlayDestroyedClip()
+    public void PlayZombieDeathClip()
     {
-        PlayClip(destroyedClip, destroyedVolume);
+        PlayClip(deathClip, deathVolume);
+    }
+
+    public void PlayExplosionClip()
+    {
+        PlayClip(explosionClip, explosionVolume);
     }
 
     void PlayClip(AudioClip clip, float volume)

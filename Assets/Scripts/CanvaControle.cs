@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -19,7 +17,6 @@ public class CanvaControle : MonoBehaviour
     [Header("Game Win")]
     [SerializeField] private GameObject gameWinCanvas;
 
-    HealthHolder healthHolder;
     public static bool isPaused;
 
     private void Awake()
@@ -48,7 +45,7 @@ public class CanvaControle : MonoBehaviour
     public void GameOver()
     {
         gameCanvas.SetActive(false);
-        StartCoroutine(WaitAndLoad(gameOverCanvas, 0.1f));
+        StartCoroutine(WaitAndLoad(gameOverCanvas, 1.5f));
         if (gameOverCanvas.activeInHierarchy)
         {
             Time.timeScale = 0f;

@@ -3,9 +3,10 @@ using UnityEngine;
 public class HealthHolder : MonoBehaviour
 {
     [SerializeField] private float health = 50f;
-    [SerializeField] private ParticleSystem deathEffect;
     [SerializeField] private bool isPlayer;
+    [SerializeField] private ParticleSystem deathEffect;
     [SerializeField] private Collider objectColider;
+    
 
     CanvaControle canvaControle;
     AudioPlayer audioPlayer;
@@ -37,18 +38,15 @@ public class HealthHolder : MonoBehaviour
         if (!isPlayer)
         {
             audioPlayer.PlayZombieDeathClip();
-            PlayDeathParticle();
-            Destroy(gameObject);
         }
         else
         {
             audioPlayer.PlayExplosionClip();
             PlayDeathParticle();
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
             canvaControle.GameOver();
         }
-
-        objectColider.gameObject.SetActive(false);
+        objectColider.enabled = false;
     }
 
     private void PlayDeathParticle()

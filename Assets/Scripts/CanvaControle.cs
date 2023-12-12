@@ -46,7 +46,7 @@ public class CanvaControle : MonoBehaviour
     {
         gameCanvas.SetActive(false);
         StartCoroutine(WaitAndLoad(gameOverCanvas, 1.5f));
-        if (gameOverCanvas.activeInHierarchy)
+        if (gameOverCanvas.activeSelf)
         {
             Time.timeScale = 0f;
         }

@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 7907051012841781566}
-  playerCamera: {fileID: 0}
   laserRange: 100
 --- !u!120 &1242906956608401434
 LineRenderer:
@@ -236,10 +235,13 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1869137044112299133, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1783778747132438, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
     - {fileID: 3958975933657194073, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+    - {fileID: 3249641071680701116, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
+    - {fileID: 3625965129081917766, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4030014358928648, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
       insertIndex: -1
@@ -250,7 +252,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1823555133069606, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8001306660378439792}
+      addedObject: {fileID: 1683501353296051036}
   m_SourcePrefab: {fileID: 100100000, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
 --- !u!4 &5549198412321515201 stripped
 Transform:
@@ -262,7 +264,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1823555133069606, guid: 88906c728e72d9e409b955a867bdd87c, type: 3}
   m_PrefabInstance: {fileID: 5552067290257185737}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &8001306660378439792
+--- !u!65 &1683501353296051036
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,8 +283,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2898339, y: 0.7007816, z: 2.0685577}
-  m_Center: {x: -0.002629459, y: 0.34859532, z: 0.15942621}
+  m_Size: {x: 0.5796678, y: 1.4015632, z: 4.1371155}
+  m_Center: {x: -0.005258918, y: 0.6971911, z: 0.31885242}
 --- !u!1001 &8035238507777467610
 PrefabInstance:
   m_ObjectHideFlags: 0

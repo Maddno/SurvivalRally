@@ -10,12 +10,14 @@ public class EnemyActions : MonoBehaviour
     [SerializeField] private float enemyDamage = 10f;
 
     AudioPlayer audioPlayer;
+    HealthHolder healthHolder;
 
     private bool playerInSightRange;
     private bool playAwakeZombiSound;
 
     private void Awake()
     {
+        healthHolder = FindObjectOfType<HealthHolder>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
         enemyAnimator = GetComponent<Animator>();
 
@@ -28,13 +30,13 @@ public class EnemyActions : MonoBehaviour
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 
-        if (!playerInSightRange)
+        if (!playerInSightRange && healthHolder.GetHealth() > 0)
         {
             OnIdle();
             playAwakeZombiSound = false;
         }
 
-        if (playerInSightRange)
+        if (playerInSightRange && healthHolder.GetHealth() > 0)
         {
             OnChasePlayer();
             if(!playAwakeZombiSound) 
@@ -43,12 +45,17 @@ public class EnemyActions : MonoBehaviour
                 playAwakeZombiSound = true;
             }
         }
+
+        if (healthHolder.GetHealth() <= 0)
+        {
+            enemyAnimator.SetBool("isDead", true);
+            Destroy(gameObject, 3f);
+        }
     }
 
     private void OnIdle()
     {
         enemyAnimator.SetBool("isMove", false);
-        enemyAnimator.SetBool("isAtack", false);
     }
 
     private void OnChasePlayer()
@@ -60,7 +67,7 @@ public class EnemyActions : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && healthHolder.GetHealth() > 0)
         {
             collision.gameObject.GetComponent<HealthHolder>().GetDamage(enemyDamage);
         }

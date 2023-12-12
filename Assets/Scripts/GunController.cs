@@ -19,7 +19,7 @@ public class GunController : MonoBehaviour
     AudioPlayer audioPlayer;
 
     private bool isShooting = false;
-    private float bulletAcceleration = 10f;
+    private float bulletAcceleration = 100f;
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class GunController : MonoBehaviour
     {
         float xAxisRotation = Touchscreen.current.primaryTouch.delta.x.ReadValue() * speed * Time.deltaTime;
         
-        gun.transform.Rotate(Vector3.up, -xAxisRotation);
+        gun.transform.Rotate(Vector3.up, xAxisRotation);
 
     }
 
